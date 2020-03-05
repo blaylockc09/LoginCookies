@@ -1,11 +1,22 @@
-/* Hands-on-Project 9-2
+/* Hands-on-Project 9-3
 Author: Chris Blaylock 
 Date: 03/05/2020
 filename: script.js */
 
 "use strict"
 
-populateInfo() {
+function processCookie() {
+    if (document.getElementById("rememberinput").checked) {
+        document.cookie = "username=" + document.getElementById("usernameinput").value;
+    } else {
+        var expiresDate = new Date();
+        expiresDate.setDate(expiresDate.getDate() - 7);
+        document.cookie = "username=null; expires=" + expiresDate.toUTCString();
+    }
+}
+  
+
+function populateInfo() {
     if (document.cookie) {
         var uname = document.cookie;
         uname = uname.substring(uname.lastIndexOf("=") + 1);
@@ -13,7 +24,7 @@ populateInfo() {
     }
 }
 
-handleSubmit(evt) {
+functionhandleSubmit(evt) {
     if (evt.preventDefault) {
         evt.preventDefault();
     } else {
